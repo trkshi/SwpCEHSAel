@@ -112,6 +112,7 @@
                 color: var(--color-neutral-content-strong);
                 gap: 12px;
                 transition: background-color 0.1s ease;
+                height: 40px;
             }
 
             .community-item:hover {
@@ -130,10 +131,17 @@
                 background-color: var(--color-neutral-background-weak);
             }
 
+            .community-icon img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
             .community-name {
                 font-size: 14px;
                 font-weight: 500;
                 color: var(--color-neutral-content-strong);
+                line-height: 18px;
             }
         `
     };
