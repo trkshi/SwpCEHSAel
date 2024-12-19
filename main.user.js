@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit UI Overhaul
 // @namespace    https://github.com/trkshi/SwpCEHSAel
-// @version      0.4.1
+// @version      0.5
 // @description  A modular Reddit UI enhancement script
 // @author       trkshi
 // @run-at       document-start
