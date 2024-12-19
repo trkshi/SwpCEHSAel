@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit UI Overhaul
 // @namespace    https://github.com/trkshi/SwpCEHSAel
-// @version      0.3
+// @version      0.3.1
 // @description  A modular Reddit UI enhancement script
 // @author       trkshi
 // @match        https://www.reddit.com/*
@@ -21,7 +21,7 @@
 window.RedditUIOverhaul = window.RedditUIOverhaul || {
     config: {
         debug: true,
-        version: '0.3'
+        version: '0.3.1'
     },
     Styles: {},
     Helpers: {},
@@ -31,6 +31,28 @@ window.RedditUIOverhaul = window.RedditUIOverhaul || {
 
 (function() {
     'use strict';
+
+    const criticalStyles = document.createElement('style');
+    criticalStyles.textContent = `
+        .grid-container.theme-rpl.grid {
+            display: none !important;
+        }
+        reddit-header-large {
+            display: block !important;
+        }
+        header {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 100 !important;
+            background-color: var(--color-neutral-background) !important;
+        }
+    `;
+
+    if (document.head.firstChild) {
+        document.head.insertBefore(criticalStyles, document.head.firstChild);
+    } else {
+        document.head.appendChild(criticalStyles);
+    }
 
     // Main initialization function
     function init() {
