@@ -1,10 +1,8 @@
 (function() {
     'use strict';
 
-    window.RedditUIOverhaul = window.RedditUIOverhaul || {
-        config: { debug: true, version: '0.3.8' },
-        Styles: {}
-    };
+    window.RedditUIOverhaul = window.RedditUIOverhaul || {};
+    window.RedditUIOverhaul.Styles = window.RedditUIOverhaul.Styles || {};
 
     window.RedditUIOverhaul.Styles.main = `
         :root {
