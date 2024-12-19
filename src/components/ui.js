@@ -4,7 +4,7 @@
 
     // Ensure namespace exists
     window.RedditUIOverhaul = window.RedditUIOverhaul || {
-        config: { debug: true, version: '0.3.7' },
+        config: { debug: true, version: '0.3.8' },
         UI: {}
     };
 
@@ -28,9 +28,9 @@
         },
 
         enhanceHeader: function() {
-            this.waitForHeader().then(headerDiv => {
+            this.waitForHeader().then(({ headerDiv, communityData }) => {
                 if (headerDiv && !headerDiv.querySelector('.communities-dropdown')) {
-                    this.initializeCommunities(headerDiv);
+                    this.initializeCommunities(headerDiv, communityData);
                 }
             });
         },
@@ -38,19 +38,34 @@
         waitForHeader: function() {
             return new Promise((resolve) => {
                 const headerSelector = "body > shreddit-app > reddit-header-large > reddit-header-action-items > header > nav > div.h-\\[40px\\].flex-1.py-xs.flex.justify-stretch";
-                const headerDiv = document.querySelector(headerSelector);
+                const recentDataSelector = "body > shreddit-app > shreddit-recent-page-data";
 
-                if (headerDiv) {
-                    resolve(headerDiv);
-                    return;
-                }
+                const checkElements = () => {
+                    const headerDiv = document.querySelector(headerSelector);
+                    const recentData = document.querySelector(recentDataSelector);
+
+                    if (headerDiv) {
+                        let communityData = null;
+                        if (recentData) {
+                            try {
+                                const dataAttr = recentData.getAttribute('data');
+                                if (dataAttr) {
+                                    communityData = JSON.parse(dataAttr);
+                                }
+                            } catch (error) {
+                                RedditUIOverhaul.Helpers.log('Failed to parse recent page data: ' + error.message, 'error');
+                            }
+                        }
+                        resolve({ headerDiv, communityData });
+                        return;
+                    }
+                };
+
+                // Check initially
+                checkElements();
 
                 const observer = new MutationObserver((mutations, obs) => {
-                    const headerDiv = document.querySelector(headerSelector);
-                    if (headerDiv) {
-                        obs.disconnect();
-                        resolve(headerDiv);
-                    }
+                    checkElements();
                 });
 
                 observer.observe(document.body, {
@@ -60,17 +75,24 @@
 
                 setTimeout(() => {
                     observer.disconnect();
-                    resolve(null);
+                    resolve({ headerDiv: null, communityData: null });
                 }, 10000);
             });
         },
 
-        initializeCommunities: function(headerDiv) {
+        initializeCommunities: function(headerDiv, communityData) {
             const currentPath = window.location.pathname;
             const subredditMatch = currentPath.match(/^\/r\/([^/]+)/);
 
             const initialCommunities = [];
-            if (subredditMatch) {
+            if (subredditMatch && communityData) {
+                initialCommunities.push({
+                    prefixedName: communityData.displayNamePrefixed || `r/${subredditMatch[1]}`,
+                    styles: {
+                        icon: communityData.communityIcon || null
+                    }
+                });
+            } else if (subredditMatch) {
                 initialCommunities.push({
                     prefixedName: `r/${subredditMatch[1]}`,
                     styles: { icon: null }
