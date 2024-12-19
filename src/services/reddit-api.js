@@ -2,6 +2,12 @@
 (function() {
     'use strict';
 
+    // Ensure namespace exists
+    window.RedditUIOverhaul = window.RedditUIOverhaul || {
+        config: { debug: true, version: '0.2' },
+        RedditAPI: {}
+    };
+
     // Reddit API Service
     window.RedditUIOverhaul.RedditAPI = {
         // Cache for API responses

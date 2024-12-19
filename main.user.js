@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit UI Overhaul
 // @namespace    https://github.com/trkshi/SwpCEHSAel
-// @version      0.2
+// @version      0.3
 // @description  A modular Reddit UI enhancement script
 // @author       trkshi
 // @match        https://www.reddit.com/*
@@ -21,7 +21,7 @@
 window.RedditUIOverhaul = window.RedditUIOverhaul || {
     config: {
         debug: true,
-        version: '0.2'
+        version: '0.3'
     },
     Styles: {},
     Helpers: {},
