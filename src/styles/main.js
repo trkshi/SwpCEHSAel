@@ -35,7 +35,7 @@
                 padding: 0 12px;
                 border-radius: 4px;
                 background-color: transparent;
-                border: 1px solid var(--ruo-border-color);
+                border: 1px solid var(--color-neutral-border-strong);
                 color: inherit;
                 font-size: 14px;
                 font-weight: 500;
@@ -50,8 +50,8 @@
                 position: absolute;
                 top: 100%;
                 left: 0;
-                background-color: var(--ruo-secondary-color);
-                border: 1px solid var(--ruo-border-color);
+                background-color: var(--color-neutral-background);
+                border: 1px solid var(--color-neutral-border-strong);
                 border-radius: 4px;
                 min-width: 240px;
                 max-height: 400px;
@@ -70,12 +70,12 @@
                 align-items: center;
                 padding: 8px 16px;
                 text-decoration: none;
-                color: var(--ruo-primary-color);
+                color: var(--color-neutral-content);
                 gap: 12px;
             }
 
             .community-item:hover {
-                background-color: var(--ruo-background-color);
+                background-color: var(--color-neutral-background-hover);
             }
 
             .community-icon {
@@ -84,6 +84,10 @@
                 flex-shrink: 0;
                 border-radius: 4px;
                 overflow: hidden;
+            }
+
+            .community-name {
+                font-weight: 500;
             }
         `
     };
