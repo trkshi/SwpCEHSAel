@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit UI Overhaul
 // @namespace    https://github.com/trkshi/SwpCEHSAel
-// @version      0.1
+// @version      0.2
 // @description  A modular Reddit UI enhancement script
 // @author       trkshi
 // @match        https://www.reddit.com/*
@@ -12,6 +12,8 @@
 // @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/components/ui.js
 // @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/utils/helpers.js
 // @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/services/reddit-api.js
+// @updateURL    https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/main.user.js
+// @downloadURL  https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/main.user.js
 // ==/UserScript==
 
 (function() {
@@ -21,7 +23,7 @@
     window.RedditUIOverhaul = {
         config: {
             debug: true,
-            version: '0.1'
+            version: '0.2'
         }
     };
 

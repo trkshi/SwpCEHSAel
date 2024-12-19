@@ -8,39 +8,109 @@
         cache: new Map(),
 
         // Fetch post data with caching
-        async getPostData(postId) {
+        getPostData: function(postId) {
             if (this.cache.has(postId)) {
-                return this.cache.get(postId);
+                return Promise.resolve(this.cache.get(postId));
             }
 
-            try {
-                const response = await fetch(`https://www.reddit.com/comments/${postId}.json`);
-                const data = await response.json();
-                this.cache.set(postId, data);
-                return data;
-            } catch (error) {
-                RedditUIOverhaul.Helpers.log(error, 'error');
-                return null;
-            }
+            return fetch(`https://www.reddit.com/comments/${postId}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    this.cache.set(postId, data);
+                    return data;
+                })
+                .catch(error => {
+                    RedditUIOverhaul.Helpers.log(error, 'error');
+                    return null;
+                });
         },
 
         // Get current subreddit info
-        async getSubredditInfo(subreddit) {
+        getSubredditInfo: function(subreddit) {
             const cacheKey = `subreddit_${subreddit}`;
 
             if (this.cache.has(cacheKey)) {
-                return this.cache.get(cacheKey);
+                return Promise.resolve(this.cache.get(cacheKey));
             }
 
-            try {
-                const response = await fetch(`https://www.reddit.com/r/${subreddit}/about.json`);
-                const data = await response.json();
-                this.cache.set(cacheKey, data);
-                return data;
-            } catch (error) {
-                RedditUIOverhaul.Helpers.log(error, 'error');
+            return fetch(`https://www.reddit.com/r/${subreddit}/about.json`)
+                .then(response => response.json())
+                .then(data => {
+                    this.cache.set(cacheKey, data);
+                    return data;
+                })
+                .catch(error => {
+                    RedditUIOverhaul.Helpers.log(error, 'error');
+                    return null;
+                });
+        },
+
+        // Get user's communities
+        getCommunities: function() {
+            const cachedData = this.getCachedCommunities();
+            if (cachedData) {
+                return Promise.resolve(cachedData);
+            }
+
+            return fetch('https://www.reddit.com/svc/shreddit/left-nav-communities-section', {
+                headers: {
+                    'Accept': 'text/html',
+                    'Cookie': document.cookie
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch communities');
+                }
+                return response.text();
+            })
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                const communitiesController = doc.querySelector('left-nav-communities-controller');
+                if (!communitiesController) {
+                    throw new Error('Communities controller not found');
+                }
+
+                const jsonData = communitiesController.getAttribute('initialStateJSON');
+                const communities = JSON.parse(jsonData);
+
+                if (communities && communities.length > 0) {
+                    this.setCachedCommunities(communities);
+                    return communities;
+                }
+
+                return [];
+            })
+            .catch(error => {
+                RedditUIOverhaul.Helpers.log('Error fetching communities: ' + error.message, 'error');
+                return [];
+            });
+        },
+
+        // Cache helpers
+        setCachedCommunities: function(communities) {
+            const cache = {
+                timestamp: Date.now(),
+                data: communities
+            };
+            localStorage.setItem('redditCommunities', JSON.stringify(cache));
+        },
+
+        getCachedCommunities: function() {
+            const cache = localStorage.getItem('redditCommunities');
+            if (!cache) return null;
+
+            const { timestamp, data } = JSON.parse(cache);
+            const fiveMinutes = 5 * 60 * 1000;
+
+            if (Date.now() - timestamp > fiveMinutes) {
+                localStorage.removeItem('redditCommunities');
                 return null;
             }
+
+            return data;
         }
     };
 })();
