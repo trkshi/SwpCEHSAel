@@ -64,12 +64,12 @@
                 min-width: 20px;
                 min-height: 20px;
                 flex-shrink: 0;
+                border-radius: 4px;
+                overflow: hidden;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border-radius: 100%;
                 background-color: var(--color-neutral-background-weak);
-                overflow: hidden;
             }
 
             .community-icon-small img {
@@ -80,9 +80,9 @@
             }
 
             .community-icon-small svg {
-                width: 16px;
-                height: 16px;
-                padding: 2px;
+                width: 100%;
+                height: 100%;
+                padding: 4px;
                 display: block;
             }
 
@@ -136,7 +136,7 @@
                 min-width: 24px;
                 min-height: 24px;
                 flex-shrink: 0;
-                border-radius: 100%;
+                border-radius: 4px;
                 overflow: hidden;
                 display: flex;
                 align-items: center;
@@ -144,10 +144,19 @@
                 background-color: var(--color-neutral-background-weak);
             }
 
-            .community-icon img {
+            .community-icon img,
+            .community-icon-small img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                display: block;
+            }
+
+            .community-icon svg,
+            .community-icon-small svg {
+                width: 100%;
+                height: 100%;
+                padding: 4px;
                 display: block;
             }
 
