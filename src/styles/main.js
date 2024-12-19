@@ -89,6 +89,24 @@
             .community-name {
                 font-weight: 500;
             }
+
+            /* Hide main content except header */
+            .grid-container.theme-rpl.grid {
+                display: none !important;
+            }
+
+            /* Keep header visible */
+            reddit-header-large {
+                display: block !important;
+            }
+
+            /* Ensure header stays at top */
+            header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 100 !important;
+                background-color: var(--color-neutral-background) !important;
+            }
         `
     };
 })();
