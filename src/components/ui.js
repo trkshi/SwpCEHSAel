@@ -79,13 +79,18 @@
         insertCommunitiesDropdown: function(headerDiv, communities) {
             const dropdownContainer = RedditUIOverhaul.Helpers.createElement('div', { class: 'communities-dropdown' });
 
+            // Get current subreddit from URL
+            const currentPath = window.location.pathname;
+            const subredditMatch = currentPath.match(/^\/r\/([^/]+)/);
+            const buttonText = subredditMatch ? `r/${subredditMatch[1]}` : 'Communities';
+
             // Create button
             const button = RedditUIOverhaul.Helpers.createElement('button', { class: 'communities-button' });
             button.innerHTML = `
                 <span style="display: flex; align-items: center;">
-                    <span>Communities</span>
+                    <span class="button-text">${buttonText}</span>
                     <span style="margin-left: 4px; display: flex; align-items: center;">
-                        <svg fill="currentColor" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg">
+                        <svg fill="currentColor" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 13.125a.624.624 0 0 1-.442-.183l-5-5 .884-.884L10 11.616l4.558-4.558.884.884-5 5a.624.624 0 0 1-.442.183Z"></path>
                         </svg>
                     </span>

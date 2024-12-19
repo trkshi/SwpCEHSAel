@@ -28,37 +28,49 @@
                 height: 100%;
                 display: flex;
                 align-items: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             }
 
             .communities-button {
-                height: 32px;
-                padding: 0 12px;
+                height: 36px;
+                padding: 0 8px;
                 border-radius: 4px;
                 background-color: transparent;
-                border: 1px solid var(--color-neutral-border-strong);
+                border: none;
                 color: inherit;
                 font-size: 14px;
                 font-weight: 500;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
-                margin-top: 2px;
+                transition: background-color 0.1s ease;
+            }
+
+            .communities-button:hover {
+                background-color: var(--color-neutral-background-hover);
+            }
+
+            .button-text {
+                max-width: 200px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
 
             .communities-dropdown-content {
                 display: none;
                 position: absolute;
-                top: 100%;
+                top: calc(100% + 4px);
                 left: 0;
-                background-color: var(--color-neutral-background);
-                border: 1px solid var(--color-neutral-border-strong);
-                border-radius: 4px;
-                min-width: 240px;
-                max-height: 400px;
+                background-color: var(--color-neutral-background-strong);
+                border: 1px solid var(--color-neutral-border-weak);
+                border-radius: 8px;
+                min-width: 270px;
+                max-height: 480px;
                 overflow-y: auto;
                 z-index: 1000;
-                margin-top: 4px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                padding: 8px 0;
             }
 
             .communities-dropdown-content.show {
@@ -70,8 +82,9 @@
                 align-items: center;
                 padding: 8px 16px;
                 text-decoration: none;
-                color: var(--color-neutral-content);
+                color: var(--color-neutral-content-strong);
                 gap: 12px;
+                transition: background-color 0.1s ease;
             }
 
             .community-item:hover {
@@ -82,12 +95,18 @@
                 width: 24px;
                 height: 24px;
                 flex-shrink: 0;
-                border-radius: 4px;
+                border-radius: 100%;
                 overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--color-neutral-background-weak);
             }
 
             .community-name {
+                font-size: 14px;
                 font-weight: 500;
+                color: var(--color-neutral-content-strong);
             }
         `
     };
