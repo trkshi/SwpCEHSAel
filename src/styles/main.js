@@ -19,6 +19,7 @@
             --color-neutral-border-weak: #ccc;
             --color-neutral-content: #1c1c1c;
             --color-neutral-content-strong: #1a1a1b;
+            --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
         }
 
         .communities-dropdown {
@@ -27,7 +28,7 @@
             height: 100%;
             display: flex;
             align-items: center;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-sans);
         }
 
         .communities-button {
@@ -39,6 +40,7 @@
             color: inherit;
             font-size: 16px;
             font-weight: 700;
+            font-family: var(--font-sans);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -194,6 +196,7 @@
             font-weight: 500;
             color: var(--color-neutral-content-strong);
             line-height: 18px;
+            font-family: var(--font-sans);
         }
 
         /* Subreddit Header Styles */
@@ -226,16 +229,17 @@
         .community-info-section {
             position: absolute;
             left: 108px;
-            bottom: 22%;
+            bottom: 12%;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             z-index: 3;
+            gap: 4px;
         }
 
         .community-header-icon {
             position: absolute;
             left: 24px;
-            bottom: 10%;
+            bottom: 8%;
             width: 72px;
             height: 72px;
             border-radius: 100%;
@@ -255,7 +259,8 @@
 
         .community-title-section {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            gap: 2px;
         }
 
         .community-title {
@@ -265,6 +270,17 @@
             color: var(--ruo-secondary-color);
             line-height: 32px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            font-family: var(--font-sans);
+        }
+
+        .community-subtitle {
+            font-size: 14px;
+            color: var(--ruo-secondary-color);
+            opacity: 0.8;
+            margin: 0;
+            line-height: 18px;
+            font-weight: 500;
+            font-family: var(--font-sans);
         }
     `;
 })();

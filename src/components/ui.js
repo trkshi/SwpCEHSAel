@@ -254,6 +254,9 @@
                 const data = JSON.parse(recentData.getAttribute('data'));
                 if (!data) return;
 
+                const pageTitle = document.querySelector("head > title");
+                if (!pageTitle) return;
+
                 const existingHeader = document.querySelector('.subreddit-header');
                 if (existingHeader) existingHeader.remove();
 
@@ -289,12 +292,19 @@
                 // Create community info section
                 const infoSection = RedditUIOverhaul.Helpers.createElement('div', { class: 'community-info-section' });
 
-                // Community title
+                // Community title section
                 const titleSection = RedditUIOverhaul.Helpers.createElement('div', { class: 'community-title-section' });
-                const title = RedditUIOverhaul.Helpers.createElement('h1', { class: 'community-title' });
-                title.textContent = data.displayNamePrefixed;
-                titleSection.appendChild(title);
 
+                // Main title from page title
+                const title = RedditUIOverhaul.Helpers.createElement('h1', { class: 'community-title' });
+                title.textContent = pageTitle.textContent.split(':')[0].trim();
+
+                // Subtitle (community name)
+                const subtitle = RedditUIOverhaul.Helpers.createElement('p', { class: 'community-subtitle' });
+                subtitle.textContent = data.displayNamePrefixed;
+
+                titleSection.appendChild(title);
+                titleSection.appendChild(subtitle);
                 infoSection.appendChild(titleSection);
 
                 banner.appendChild(contentContainer);
