@@ -101,9 +101,28 @@
 
             this.insertCommunitiesDropdown(headerDiv, initialCommunities);
 
+            this.initialCommunityData = communityData;
+
             RedditUIOverhaul.RedditAPI.getCommunities()
                 .then(communities => {
-                    this.insertCommunitiesDropdown(headerDiv, communities);
+                    if (this.initialCommunityData && subredditMatch) {
+                        const currentSubreddit = subredditMatch[1].toLowerCase();
+                        const updatedCommunities = communities.map(community => {
+                            if (community.prefixedName?.toLowerCase() === `r/${currentSubreddit}`) {
+                                return {
+                                    ...community,
+                                    styles: {
+                                        ...community.styles,
+                                        icon: this.initialCommunityData.communityIcon || community.styles?.icon
+                                    }
+                                };
+                            }
+                            return community;
+                        });
+                        this.insertCommunitiesDropdown(headerDiv, updatedCommunities);
+                    } else {
+                        this.insertCommunitiesDropdown(headerDiv, communities);
+                    }
                 })
                 .catch(error => {
                     RedditUIOverhaul.Helpers.log('Failed to initialize communities: ' + error.message, 'error');
@@ -123,9 +142,20 @@
             const subredditMatch = currentPath.match(/^\/r\/([^/]+)/);
             const buttonText = subredditMatch ? `r/${subredditMatch[1]}` : 'Communities';
 
-            // Find current community in the communities list
-            const currentCommunity = subredditMatch && Array.isArray(communities) ?
-                communities.find(c => c.prefixedName?.toLowerCase() === `r/${subredditMatch[1]}`.toLowerCase()) : null;
+            let currentCommunity = null;
+            if (subredditMatch && Array.isArray(communities)) {
+                const currentSubreddit = subredditMatch[1].toLowerCase();
+                currentCommunity = communities.find(c => c.prefixedName?.toLowerCase() === `r/${currentSubreddit}`);
+
+                if (this.initialCommunityData && (!currentCommunity?.styles?.icon || !currentCommunity)) {
+                    currentCommunity = {
+                        prefixedName: this.initialCommunityData.displayNamePrefixed || `r/${currentSubreddit}`,
+                        styles: {
+                            icon: this.initialCommunityData.communityIcon
+                        }
+                    };
+                }
+            }
 
             // Create button
             const button = RedditUIOverhaul.Helpers.createElement('button', { class: 'communities-button' });
