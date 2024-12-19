@@ -38,8 +38,8 @@
                 background-color: transparent;
                 border: none;
                 color: inherit;
-                font-size: 14px;
-                font-weight: 500;
+                font-size: 16px;
+                font-weight: 700;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
@@ -48,6 +48,20 @@
 
             .communities-button:hover {
                 background-color: var(--color-neutral-background-hover);
+            }
+
+            .community-icon-small {
+                width: 20px;
+                height: 20px;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .community-icon-small svg {
+                width: 20px;
+                height: 20px;
             }
 
             .button-text {
