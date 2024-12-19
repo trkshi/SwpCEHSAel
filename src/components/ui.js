@@ -87,6 +87,8 @@
             const currentCommunity = subredditMatch && communities ?
                 communities.find(c => c.prefixedName.toLowerCase() === `r/${subredditMatch[1]}`.toLowerCase()) : null;
 
+            console.log(currentCommunity);
+
             const button = RedditUIOverhaul.Helpers.createElement('button', { class: 'communities-button' });
             button.innerHTML = `
                 <span style="display: flex; align-items: center; gap: 8px;">
