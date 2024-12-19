@@ -2,6 +2,12 @@
 (function() {
     'use strict';
 
+    // Ensure namespace exists
+    window.RedditUIOverhaul = window.RedditUIOverhaul || {
+        config: { debug: true, version: '0.2' },
+        Styles: {}
+    };
+
     // Styles Module
     window.RedditUIOverhaul.Styles = {
         // Main styles for the UI overhaul

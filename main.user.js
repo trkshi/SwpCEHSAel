@@ -17,18 +17,20 @@
 // @downloadURL  https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/main.user.js
 // ==/UserScript==
 
+// Initialize the Reddit UI Overhaul namespace globally
+window.RedditUIOverhaul = window.RedditUIOverhaul || {
+    config: {
+        debug: true,
+        version: '0.2'
+    },
+    Styles: {},
+    Helpers: {},
+    RedditAPI: {},
+    UI: {}
+};
+
 (function() {
     'use strict';
-
-    // Initialize the Reddit UI Overhaul namespace before loading modules
-    if (!window.RedditUIOverhaul) {
-        window.RedditUIOverhaul = {
-            config: {
-                debug: true,
-                version: '0.2'
-            }
-        };
-    }
 
     // Main initialization function
     function init() {
@@ -39,7 +41,7 @@
             applyCustomStyles();
 
             // Initialize components
-            if (RedditUIOverhaul.UI) {
+            if (RedditUIOverhaul.UI && RedditUIOverhaul.UI.init) {
                 RedditUIOverhaul.UI.init();
             } else {
                 console.error('UI module not loaded properly');
