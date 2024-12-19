@@ -2,9 +2,7 @@
 (function() {
     'use strict';
 
-    // Ensure namespace exists
     window.RedditUIOverhaul = window.RedditUIOverhaul || {
-        config: { debug: true, version: '0.3.8' },
         UI: {}
     };
 

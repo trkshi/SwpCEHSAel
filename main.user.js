@@ -10,6 +10,7 @@
 // @grant        GM_addStyle
 // @grant        GM_getValue
 // @grant        GM_setValue
+// @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/config.js
 // @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/styles/main.js
 // @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/utils/helpers.js
 // @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/services/reddit-api.js
@@ -20,10 +21,6 @@
 
 // Initialize the Reddit UI Overhaul namespace globally
 window.RedditUIOverhaul = window.RedditUIOverhaul || {
-    config: {
-        debug: true,
-        version: '0.3.8'
-    },
     Styles: {},
     Helpers: {},
     RedditAPI: {},
