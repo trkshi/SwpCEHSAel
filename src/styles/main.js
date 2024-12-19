@@ -150,6 +150,8 @@
                 align-items: center;
                 justify-content: center;
                 background-color: transparent;
+                margin: 0;
+                padding: 0;
             }
 
             .community-icon img {
@@ -158,13 +160,16 @@
                 object-fit: cover;
                 display: block;
                 border-radius: 100%;
+                margin: 0;
+                padding: 0;
             }
 
             .community-icon svg {
                 width: 20px;
                 height: 20px;
-                padding: 2px;
+                padding: 0;
                 display: block;
+                margin: 0;
             }
 
             .community-name {
