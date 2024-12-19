@@ -6,7 +6,6 @@
 // @author       trkshi
 // @run-at       document-start
 // @match        https://www.reddit.com/*
-// @match        https://old.reddit.com/*
 // @grant        GM_addStyle
 // @grant        GM_getValue
 // @grant        GM_setValue
