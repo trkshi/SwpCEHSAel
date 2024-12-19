@@ -264,13 +264,17 @@
         }
 
         .community-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             margin: 0;
             color: var(--ruo-secondary-color);
-            line-height: 32px;
+            line-height: 30px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             font-family: var(--font-sans);
+            max-width: calc(100vw - 140px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .community-subtitle {
@@ -281,6 +285,47 @@
             line-height: 18px;
             font-weight: 500;
             font-family: var(--font-sans);
+            max-width: calc(100vw - 140px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Add responsive styles for smaller screens */
+        @media screen and (max-width: 768px) {
+            .community-info-section {
+                left: 88px;
+            }
+
+            .community-header-icon {
+                left: 16px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .community-title {
+                font-size: 22px;
+                line-height: 26px;
+                max-width: calc(100vw - 110px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .community-info-section {
+                left: 76px;
+            }
+
+            .community-header-icon {
+                left: 12px;
+                width: 52px;
+                height: 52px;
+            }
+
+            .community-title {
+                font-size: 20px;
+                line-height: 24px;
+                max-width: calc(100vw - 90px);
+            }
         }
     `;
 })();

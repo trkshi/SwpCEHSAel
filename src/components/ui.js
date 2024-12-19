@@ -295,13 +295,11 @@
                 // Community title section
                 const titleSection = RedditUIOverhaul.Helpers.createElement('div', { class: 'community-title-section' });
 
-                // Main title from page title
                 const title = RedditUIOverhaul.Helpers.createElement('h1', { class: 'community-title' });
-                title.textContent = pageTitle.textContent.split(':')[0].trim();
+                title.textContent = data.title || data.displayName || pageTitle.textContent;
 
-                // Subtitle (community name)
                 const subtitle = RedditUIOverhaul.Helpers.createElement('p', { class: 'community-subtitle' });
-                subtitle.textContent = data.displayNamePrefixed;
+                subtitle.textContent = data.publicDescription || data.displayNamePrefixed;
 
                 titleSection.appendChild(title);
                 titleSection.appendChild(subtitle);
