@@ -64,12 +64,12 @@
                 min-width: 20px;
                 min-height: 20px;
                 flex-shrink: 0;
-                border-radius: 4px;
+                border-radius: 100%;
                 overflow: hidden;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: var(--color-neutral-background-weak);
+                background-color: transparent;
             }
 
             .community-icon-small img {
@@ -77,12 +77,13 @@
                 height: 100%;
                 object-fit: cover;
                 display: block;
+                border-radius: 100%;
             }
 
             .community-icon-small svg {
-                width: 100%;
-                height: 100%;
-                padding: 4px;
+                width: 16px;
+                height: 16px;
+                padding: 2px;
                 display: block;
             }
 
@@ -117,7 +118,7 @@
             .community-item {
                 display: flex;
                 align-items: center;
-                padding: 4px 16px;
+                padding: 6px 16px;
                 text-decoration: none;
                 color: var(--color-neutral-content-strong);
                 gap: 8px;
@@ -136,27 +137,26 @@
                 min-width: 24px;
                 min-height: 24px;
                 flex-shrink: 0;
-                border-radius: 4px;
+                border-radius: 100%;
                 overflow: hidden;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: var(--color-neutral-background-weak);
+                background-color: transparent;
             }
 
-            .community-icon img,
-            .community-icon-small img {
+            .community-icon img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 display: block;
+                border-radius: 100%;
             }
 
-            .community-icon svg,
-            .community-icon-small svg {
-                width: 100%;
-                height: 100%;
-                padding: 4px;
+            .community-icon svg {
+                width: 20px;
+                height: 20px;
+                padding: 2px;
                 display: block;
             }
 
