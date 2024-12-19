@@ -70,6 +70,8 @@
                 align-items: center;
                 justify-content: center;
                 background-color: transparent;
+                margin: 0;
+                padding: 0;
             }
 
             .community-icon-small img {
@@ -78,13 +80,16 @@
                 object-fit: cover;
                 display: block;
                 border-radius: 100%;
+                margin: 0;
+                padding: 0;
             }
 
             .community-icon-small svg {
                 width: 16px;
                 height: 16px;
-                padding: 2px;
+                padding: 0;
                 display: block;
+                margin: 0;
             }
 
             .button-text {
@@ -93,6 +98,8 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 line-height: 20px;
+                margin: 0;
+                padding: 0;
             }
 
             .communities-dropdown-content {
