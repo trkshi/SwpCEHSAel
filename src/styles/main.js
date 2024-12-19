@@ -19,6 +19,14 @@
                 --ruo-accent-color: #ff4500;
                 --ruo-background-color: #f8f9fa;
                 --ruo-border-color: #edeff1;
+                --color-neutral-background: #ffffff;
+                --color-neutral-background-hover: rgba(26,26,27,0.1);
+                --color-neutral-background-strong: #ffffff;
+                --color-neutral-background-weak: #f6f7f8;
+                --color-neutral-border-strong: #edeff1;
+                --color-neutral-border-weak: #ccc;
+                --color-neutral-content: #1c1c1c;
+                --color-neutral-content-strong: #1a1a1b;
             }
 
             /* Communities Dropdown */
@@ -57,11 +65,15 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                border-radius: 100%;
+                background-color: var(--color-neutral-background-weak);
+                overflow: hidden;
             }
 
             .community-icon-small svg {
-                width: 20px;
-                height: 20px;
+                width: 16px;
+                height: 16px;
+                padding: 2px;
             }
 
             .button-text {
@@ -69,6 +81,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                line-height: 20px;
             }
 
             .communities-dropdown-content {
