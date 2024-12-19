@@ -9,9 +9,10 @@
 // @grant        GM_addStyle
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/components/ui.js
+// @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/styles/main.js
 // @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/utils/helpers.js
 // @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/services/reddit-api.js
+// @require      https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/src/components/ui.js
 // @updateURL    https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/main.user.js
 // @downloadURL  https://raw.githubusercontent.com/trkshi/SwpCEHSAel/main/main.user.js
 // ==/UserScript==
@@ -19,32 +20,44 @@
 (function() {
     'use strict';
 
-    // Initialize the Reddit UI Overhaul namespace
-    window.RedditUIOverhaul = {
-        config: {
-            debug: true,
-            version: '0.2'
-        }
-    };
+    // Initialize the Reddit UI Overhaul namespace before loading modules
+    if (!window.RedditUIOverhaul) {
+        window.RedditUIOverhaul = {
+            config: {
+                debug: true,
+                version: '0.2'
+            }
+        };
+    }
 
     // Main initialization function
     function init() {
         if (!document.querySelector('body')) return;
 
-        // Initialize components
-        RedditUIOverhaul.UI.init();
+        try {
+            // Apply custom styles first
+            applyCustomStyles();
 
-        // Apply custom styles
-        applyCustomStyles();
+            // Initialize components
+            if (RedditUIOverhaul.UI) {
+                RedditUIOverhaul.UI.init();
+            } else {
+                console.error('UI module not loaded properly');
+            }
 
-        console.log('Reddit UI Overhaul initialized!');
+            console.log('Reddit UI Overhaul initialized!');
+        } catch (error) {
+            console.error('Error initializing Reddit UI Overhaul:', error);
+        }
     }
 
     // Apply custom styles
     function applyCustomStyles() {
         const styles = RedditUIOverhaul.Styles;
-        if (styles) {
+        if (styles && styles.main) {
             GM_addStyle(styles.main);
+        } else {
+            console.error('Styles module not loaded properly');
         }
     }
 
