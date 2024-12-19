@@ -61,6 +61,8 @@
             .community-icon-small {
                 width: 20px;
                 height: 20px;
+                min-width: 20px;
+                min-height: 20px;
                 flex-shrink: 0;
                 display: flex;
                 align-items: center;
@@ -70,10 +72,18 @@
                 overflow: hidden;
             }
 
+            .community-icon-small img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
             .community-icon-small svg {
                 width: 16px;
                 height: 16px;
                 padding: 2px;
+                display: block;
             }
 
             .button-text {
@@ -107,12 +117,13 @@
             .community-item {
                 display: flex;
                 align-items: center;
-                padding: 8px 16px;
+                padding: 4px 16px;
                 text-decoration: none;
                 color: var(--color-neutral-content-strong);
-                gap: 12px;
+                gap: 8px;
                 transition: background-color 0.1s ease;
-                height: 40px;
+                min-height: 40px;
+                box-sizing: border-box;
             }
 
             .community-item:hover {
@@ -122,6 +133,8 @@
             .community-icon {
                 width: 24px;
                 height: 24px;
+                min-width: 24px;
+                min-height: 24px;
                 flex-shrink: 0;
                 border-radius: 100%;
                 overflow: hidden;
@@ -135,6 +148,7 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                display: block;
             }
 
             .community-name {
